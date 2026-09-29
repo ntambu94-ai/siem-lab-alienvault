@@ -1,45 +1,60 @@
-# siem-lab-alienvault
-SIEM implementation using AlienVault OSSIM for threat detection, correlation rules, and incident response
+# AlienVault OSSIM SIEM Lab
 
-##Objective
-Deploy AlienVault OSSIM, ingest Windows event logs, create correlation rules, and generate incident reports for simulated attack scenarios.
+> Status: In Progress
 
+A hands-on security monitoring lab demonstrating centralized Windows event collection, failed-authentication detection, event correlation, alert investigation, and incident documentation using AlienVault OSSIM.
 
-## Tools Used
-- AlienVault OSSIM
-- Windows Server 2019
-- Kali Linux (Hydra for brute-force simulation)
-- Wireshark
+## Project Objectives
 
+- Deploy AlienVault OSSIM in an isolated virtual environment.
+- Configure Windows security auditing.
+- Forward Windows security events to OSSIM.
+- Generate controlled failed-authentication activity.
+- Detect and correlate repeated authentication failures.
+- Investigate the resulting security alert.
+- Document findings and recommended remediation.
 
-## Lab Environment
-| Component | Configuration |
-|-----------|--------------|
-| SIEM Server | AlienVault OSSIM (Ubuntu) |
-| Windows Endpoint | Windows Server 2019 (AD Controller) |
-| Attack Machine | Kali Linux |
+## Planned Lab Environment
 
+| Component | Purpose |
+|---|---|
+| AlienVault OSSIM | SIEM, event collection, correlation, and alerting |
+| Windows Server | Monitored endpoint and authentication target |
+| Kali Linux | Authorized security-testing system |
+| VirtualBox | Virtualization and isolated lab networking |
 
-## Process
-1. Installed OSSIM server and configured sensors
-2. Added Windows endpoint as asset
-3. Configured syslog forwarding for Windows Security Events
-4. Generated brute-force attack using Hydra from Kali
-5. Created correlation rule for multiple failed logins
-6. Generated incident ticket and report
+## Planned Detection Scenario
 
-## Findings
-- OSSIM successfully detected brute-force attempt within 2 minutes
-- Correlation rule: 10 failed logins from same source within 60 seconds = Medium severity alert
-- Incident report documented source IP, target account, and recommended remediation
+The lab will test whether OSSIM can identify multiple failed authentication attempts against a Windows system.
 
-## Incident Report Sample
-```json
-{
-  "alert_id": "OSSIM-2026-001",
-  "severity": "Medium",
-  "source_ip": "192.168.1.105",
-  "target": "Windows-SRV-01",
-  "event": "Multiple failed logins detected",
-  "recommendation": "Block source IP, enable account lockout"
-}
+The final detection logic, event threshold, timestamps, source addresses, findings, and response actions will be documented only after the test is completed.
+
+## Planned Documentation
+
+- Network architecture
+- Installation and configuration guide
+- Windows auditing configuration
+- Event-forwarding configuration
+- Detection and correlation logic
+- Sanitized evidence
+- Incident investigation report
+- Lessons learned
+
+## Safety and Authorization
+
+All activity will be performed against personally owned virtual machines on an isolated lab network. No testing will target public systems or systems belonging to another person or organization.
+
+## Current Status
+
+- [ ] Verify host system resources
+- [ ] Create isolated virtual network
+- [ ] Deploy AlienVault OSSIM
+- [ ] Deploy Windows Server
+- [ ] Deploy Kali Linux
+- [ ] Configure Windows event collection
+- [ ] Validate event ingestion
+- [ ] Run controlled authentication test
+- [ ] Create and validate detection logic
+- [ ] Complete incident investigation
+- [ ] Add sanitized evidence
+- [ ] Finalize portfolio documentation
